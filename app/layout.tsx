@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -13,8 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Omar Enríquez | Desarrollador Jr.",
-  description: "Portafolio profesional de Omar Augusto Enríquez Señas, Desarrollador de Software y Especialista en Bases de Datos.",
+  title: "Omar Enríquez | Portafolio Profesional",
+  description: "Portafolio profesional de Omar Augusto Enríquez Señas, egresado en Desarrollo de Software y Especialista en Soporte, Sistemas e Infraestructura TI.",
 };
 
 export default function RootLayout({
@@ -23,10 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
+
         {children}
       </body>
     </html>

@@ -8,51 +8,54 @@ import {
     ResponsiveContainer,
 } from "recharts";
 
-const data = [
-    { subject: "Frontend", A: 120, fullMark: 150 },
-    { subject: "Backend", A: 98, fullMark: 150 },
-    { subject: "Base de Datos", A: 86, fullMark: 150 },
-    { subject: "Diseño UI", A: 99, fullMark: 150 },
-    { subject: "Herramientas", A: 85, fullMark: 150 },
-    { subject: "Lógica", A: 110, fullMark: 150 },
-];
+interface SkillChartProps {
+    isEnglish: boolean;
+}
 
-export default function SkillChart() {
+export default function SkillChart({ isEnglish }: SkillChartProps) {
+    const data = [
+        { subject: isEnglish ? "Development" : "Desarrollo", A: 125, fullMark: 150 },
+        { subject: isEnglish ? "Tech Support" : "Soporte Técnico", A: 115, fullMark: 150 },
+        { subject: isEnglish ? "Databases" : "Bases de Datos", A: 105, fullMark: 150 },
+        { subject: isEnglish ? "Cloud (Azure)" : "Cloud (Azure)", A: 85, fullMark: 150 },
+        { subject: isEnglish ? "Network & Security" : "Redes & Seguridad", A: 90, fullMark: 150 },
+        { subject: isEnglish ? "Logistics & Inv" : "Gestión & Inventarios", A: 100, fullMark: 150 },
+    ];
+
     return (
-        <div className="w-full h-[350px] md:h-[450px]">
+        <div className="w-full h-[320px] md:h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
                 <RadarChart
                     cx="50%"
-                    cy="40%"
-                    outerRadius="65%"
+                    cy="50%"
+                    outerRadius="60%"
                     data={data}
-                    margin={{ top: 30, right: 30, bottom: 30, left: 30 }}
                 >
                     {/* Malla de fondo más sutil */}
-                    <PolarGrid stroke="rgba(255, 255, 255, 0.15)" />
+                    <PolarGrid stroke="rgba(27, 36, 49, 0.6)" />
 
                     {/* Textos: Color blanco y fuente un poco más pequeña para que encajen */}
                     <PolarAngleAxis
                         dataKey="subject"
-                        tick={{ fill: "#e2e8f0", fontSize: 13, fontWeight: "600" }}
+                        tick={{ fill: "#94A3B8", fontSize: 11, fontWeight: "600", fontFamily: "var(--font-space-grotesk)" }}
                     />
 
                     <Radar
-                        name="Mis Habilidades"
+                        name={isEnglish ? "My Skills" : "Mis Habilidades"}
                         dataKey="A"
-                        stroke="#3b82f6"
-                        strokeWidth={3}
-                        fill="#3b82f6"
-                        fillOpacity={0.2}
+                        stroke="#00E5FF"
+                        strokeWidth={2}
+                        fill="#00E5FF"
+                        fillOpacity={0.15}
 
                         dot={{
-                            r: 6,
-                            fill: "white",
-                            stroke: "#10b981",
-                            strokeWidth: 2
+                            r: 4,
+                            fill: "#FF9E00",
+                            stroke: "#00E5FF",
+                            strokeWidth: 1.5
                         }}
 
-                        activeDot={{ r: 8, strokeWidth: 0 }}
+                        activeDot={{ r: 6, strokeWidth: 0 }}
                     />
                 </RadarChart>
             </ResponsiveContainer>
