@@ -62,3 +62,25 @@ body {
 .font-display {
   font-family: var(--font-space), 'Space Grotesk', sans-serif !important;
 }
+
+/* ── Spline 3D Scene Overrides ── */
+
+/* Force transparent background on Spline canvas */
+.spline-container canvas {
+  background: transparent !important;
+}
+
+/* Hide any Spline-injected watermark links or branding elements */
+.spline-container a[href*="spline.design"],
+.spline-container a[href*="spline"],
+.spline-container div[class*="watermark"],
+.spline-container div[class*="logo"],
+.spline-container img[alt*="Spline"],
+.spline-container img[alt*="spline"] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}

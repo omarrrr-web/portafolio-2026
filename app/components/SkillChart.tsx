@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import {
     Radar,
     RadarChart,
@@ -12,7 +13,7 @@ interface SkillChartProps {
     isEnglish: boolean;
 }
 
-export default function SkillChart({ isEnglish }: SkillChartProps) {
+const SkillChart = memo(function SkillChart({ isEnglish }: SkillChartProps) {
     const data = [
         { subject: isEnglish ? "Development" : "Desarrollo", A: 125, fullMark: 150 },
         { subject: isEnglish ? "Tech Support" : "Soporte Técnico", A: 115, fullMark: 150 },
@@ -61,4 +62,6 @@ export default function SkillChart({ isEnglish }: SkillChartProps) {
             </ResponsiveContainer>
         </div>
     );
-}
+});
+
+export default SkillChart;

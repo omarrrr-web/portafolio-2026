@@ -28,7 +28,7 @@ portafolio-2025-main/
 ├── app/                                    # Directorio principal de la aplicación (App Router)
 │   ├── components/                         # Componentes reactivos modulares
 │   │   ├── ExperienceTimeline.tsx          # Línea de tiempo de experiencia laboral dinámica
-│   │   ├── HolographicTechCard.tsx         # Tarjetas 3D holográficas para las especialidades
+│   │   ├── InteractiveRobot.tsx            # Robot asistente interactivo 3D que sigue al cursor
 │   │   ├── InteractiveNetworkBackground.tsx# Fondo animado en Canvas que responde al tema
 │   │   ├── ProjectCard.tsx                 # Tarjetas de presentación de proyectos con enlaces
 │   │   ├── ScrollToTop.tsx                 # Botón flotante para volver arriba
@@ -78,11 +78,11 @@ El stack técnico está optimizado para proveer interactividad suave y carga ins
 *   **Space Grotesk en Acción**: Título de impacto en la parte izquierda con degradado cian-ámbar en tipografía display.
 *   **Interactive Terminal**: Emulador en tiempo real en la parte derecha donde el usuario puede tipear comandos o pulsar accesos rápidos como `.help`, `.diagnostico`, `.experiencia` y `.contacto` para auditar la información técnica de Omar directamente desde una interfaz tipo CLI.
 
-### C. Tarjetas Holográficas 3D (`HolographicTechCard`)
-*   Tres tarjetas flotantes con sensor de cursor del ratón (giro 3D e iluminación de lente/glare):
-    1.  **Software Development (DEV // INFRA)**: Tecnologías de frontend y backend.
-    2.  **Systems & Support (SYS // NET)**: Competencias en redes, sistemas operativos, seguridad y hardware.
-    3.  **Data & Cloud (DB // CLOUD)**: Motores SQL, servicios cloud e inventariado informático.
+### C. Robot Asistente Interactivo (`InteractiveRobot`)
+*   Reemplaza la galería de tarjetas holográficas por un **asistente robótico interactivo ("Sentinel v2.0")** que flota en el lado derecho de la pantalla Hero.
+*   **Seguimiento del Cursor**: La cabeza gira en perspectiva 3D (ejes X e Y) y la pantalla LED de la cara desplaza sus ojos digitales siguiendo dinámicamente la posición del puntero del ratón en la ventana, utilizando resortes de movimiento (`framer-motion` springs) para una inercia fluida y orgánica.
+*   **Burbuja de Diálogo**: Muestra mensajes dinámicos sobre el estado del sistema, consejos de uso del portafolio (como invitaciones a probar comandos en la terminal de Omar) o frases interactivas al hacer clic sobre el robot.
+*   **Efectos visuales**: Rodeado por dos anillos holográficos flotantes y giratorios de energía que reaccionan a la inclinación del ratón.
 
 ### D. Panel de Control Bento (Bento Grid)
 Estructura asimétrica y responsiva que agrupa:

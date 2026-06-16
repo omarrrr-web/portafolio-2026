@@ -1,4 +1,5 @@
 "use client";
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { FaBriefcase, FaCalendarAlt } from "react-icons/fa";
 
@@ -6,7 +7,7 @@ interface ExperienceTimelineProps {
     isEnglish: boolean;
 }
 
-export default function ExperienceTimeline({ isEnglish }: ExperienceTimelineProps) {
+const ExperienceTimeline = memo(function ExperienceTimeline({ isEnglish }: ExperienceTimelineProps) {
     const experiences = [
         {
             company: "Vasco Technologies",
@@ -93,4 +94,6 @@ export default function ExperienceTimeline({ isEnglish }: ExperienceTimelineProp
             ))}
         </div>
     );
-}
+});
+
+export default ExperienceTimeline;

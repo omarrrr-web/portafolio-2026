@@ -1,4 +1,5 @@
-import { FaExternalLinkAlt } from "react-icons/fa"; // Asegúrate de importar el icono
+import { memo } from "react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 interface ProjectCardProps {
   title: string;
@@ -6,10 +7,10 @@ interface ProjectCardProps {
   description: string;
   role: string;
   techStack: string[];
-  link?: string; // <--- NUEVO: Opcional, por si algún proyecto no tiene link
+  link?: string;
 }
 
-export default function ProjectCard({ title, type, description, role, techStack, link }: ProjectCardProps) {
+const ProjectCard = memo(function ProjectCard({ title, type, description, role, techStack, link }: ProjectCardProps) {
   return (
     <div className="bg-dark-surface/50 border border-dark-border rounded-2xl p-8 hover:border-primary-cyan/50 transition-all group relative overflow-hidden">
 
@@ -60,4 +61,6 @@ export default function ProjectCard({ title, type, description, role, techStack,
       </div>
     </div>
   );
-}
+});
+
+export default ProjectCard;
