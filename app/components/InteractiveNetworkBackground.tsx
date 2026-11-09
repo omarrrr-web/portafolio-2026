@@ -12,8 +12,15 @@ export default function InteractiveNetworkBackground() {
     if (!ctx) return;
 
     let animationFrameId: number;
+    let isVisible = true;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
+
+    // Intersection Observer to pause when not visible
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+    }, { threshold: 0.01 });
+    visibilityObserver.observe(canvas);
 
     // Track mouse position
     const mouse = {
@@ -203,6 +210,10 @@ export default function InteractiveNetworkBackground() {
 
     // Animation Loop
     const animate = () => {
+      if (!isVisible) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
       ctx.clearRect(0, 0, width, height);
 
       // Draw connections
@@ -252,6 +263,7 @@ export default function InteractiveNetworkBackground() {
       window.removeEventListener("mouseleave", handleMouseLeave);
       window.removeEventListener("resize", handleResize);
       observer.disconnect();
+      visibilityObserver.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

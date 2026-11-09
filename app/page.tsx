@@ -165,14 +165,14 @@ export default function Home() {
 
   return (
     <div className="relative w-full overflow-hidden">
-      <main className="min-h-screen bg-black text-text-muted transition-colors duration-300 flex flex-col items-center p-4 md:p-12 relative overflow-hidden">
+      <main className="min-h-screen bg-dark-bg text-text-muted transition-colors duration-300 flex flex-col items-center p-4 md:p-12 relative overflow-hidden">
         {/* ══════ CINEMATIC BACKGROUND SYSTEM ══════ */}
 
-        {/* Base Gradient Layer: Black at top, transitioning to theme background */}
-        <div className="absolute inset-0 z-[-30] bg-gradient-to-b from-black via-black to-dark-bg transition-colors duration-700"></div>
+        {/* Base Gradient Layer: Theme-aware transition */}
+        <div className="absolute inset-0 z-[-30] bg-gradient-to-b from-black via-dark-bg to-dark-bg transition-colors duration-700"></div>
 
         {/* Grid Infrastructure Layer (Subtle) */}
-        <div className="absolute top-0 left-0 w-full h-[150vh] pointer-events-none -z-25 bg-[linear-gradient(to_right,#1B243120_1px,transparent_1px),linear-gradient(to_bottom,#1B243120_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]"></div>
+        <div className="absolute top-0 left-0 w-full h-[150vh] pointer-events-none -z-25 bg-[linear-gradient(to_right,var(--dark-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--dark-border)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" style={{ opacity: 'var(--grid-opacity)' }}></div>
 
         {/* Digital Scanline Overlay (Interactive dashboard feel) */}
         <div className="absolute inset-0 z-[-15] pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%] animate-pulse"></div>
@@ -195,7 +195,7 @@ export default function Home() {
         </div>
 
         {/* Vignette effect for focus */}
-        <div className="absolute inset-0 z-[-10] pointer-events-none bg-[radial-gradient(circle_at_50%_50%,transparent_20%,rgba(0,0,0,0.4)_100%)]"></div>
+        <div className="absolute inset-0 z-[-10] pointer-events-none bg-[radial-gradient(circle_at_50%_50%,transparent_20%,var(--vignette)_100%)]"></div>
 
 
         {/* Animated network grid background */}
@@ -284,7 +284,7 @@ export default function Home() {
                 href="https://github.com/omarrrr-web"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-pointer px-5 py-3 bg-dark-surface/80 backdrop-blur-sm hover:bg-dark-surface/60 text-white border border-dark-border rounded-xl font-medium transition-all flex items-center gap-2 font-mono text-sm hover:-translate-y-0.5 hover:border-slate-600"
+                className="cursor-pointer px-5 py-3 bg-dark-surface/80 backdrop-blur-sm hover:bg-dark-surface/60 text-text-title border border-dark-border rounded-xl font-medium transition-all flex items-center gap-2 font-mono text-sm hover:-translate-y-0.5 hover:border-slate-600"
               >
                 <FaGithub className="text-lg" /> GITHUB
               </a>
@@ -296,42 +296,6 @@ export default function Home() {
                 <FaDownload className="text-sm" /> {t.downloadCv}
               </button>
             </div>
-          </div>
-        </div>
-
-        {/* --- TECNOLOGÍAS INFRASTRUCTURE BAR (CARRUSEL AUTOMÁTICO) --- */}
-        <div className="w-full max-w-full overflow-hidden relative z-10 mb-28">
-          <div className="relative w-full">
-            <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-dark-bg to-transparent"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-dark-bg to-transparent"></div>
-
-            <motion.div
-              className="flex gap-6 w-max"
-              animate={{ x: "-33.33%" }}
-              initial={{ x: "0%" }}
-              transition={{ duration: 18, ease: "linear", repeat: Infinity }}
-            >
-              {[...Array(3)].map((_, i) => (
-                <div key={i} className="flex gap-6">
-                  {[
-                    { name: "TypeScript", icon: <SiTypescript className="text-[#3178C6]" /> },
-                    { name: "React / Next.js", icon: <SiNextdotjs className="text-white" /> },
-                    { name: "SQL Server", icon: <SiMysql className="text-[#CC2927]" /> },
-                    { name: "MySQL / Supabase", icon: <SiMysql className="text-[#00758F]" /> },
-                    { name: "Git & GitHub", icon: <SiGit className="text-orange-500" /> },
-                    { name: "Figma UI", icon: <SiFigma className="text-pink-500" /> },
-                  ].map((tech, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-3 px-5 py-3 bg-dark-surface/60 rounded-xl border border-dark-border backdrop-blur-sm shrink-0"
-                    >
-                      <div className="text-xl">{tech.icon}</div>
-                      <span className="text-xs text-text-title font-mono uppercase tracking-wider">{tech.name}</span>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </motion.div>
           </div>
         </div>
 

@@ -16,21 +16,25 @@
 }
 
 :root {
-  --background: #080B10;
+  --background: #000000;
   --foreground: #E2E8F0;
-  --dark-surface: #0F141C;
-  --dark-border: #1B2431;
+  --dark-surface: #05070A;
+  --dark-border: #111827;
   --text-title: #FFFFFF;
   --text-muted: #94A3B8;
+  --vignette: rgba(0, 0, 0, 0.7);
+  --grid-opacity: 0.15;
 }
 
 .light-mode {
   --background: #F8FAFC;
   --foreground: #1E293B;
   --dark-surface: #FFFFFF;
-  --dark-border: #CBD5E1; /* darker gray border for higher contrast */
+  --dark-border: #CBD5E1; 
   --text-title: #0F172A;
-  --text-muted: #334155; /* darker slate gray for high contrast text */
+  --text-muted: #334155; 
+  --vignette: rgba(203, 213, 225, 0.2);
+  --grid-opacity: 0.08;
 }
 
 

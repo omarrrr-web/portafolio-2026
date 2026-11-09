@@ -10,15 +10,43 @@ interface SplineSceneProps {
 export default function SplineScene({ scene, className = "" }: SplineSceneProps) {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const splineApp = useRef<any>(null);
 
-  const handleLoad = useCallback(() => {
+  const handleLoad = useCallback((app: any) => {
+    splineApp.current = app;
+    // Optimize: Set pixel ratio to 1 (huge performance gain on retina/high-dpi screens)
+    if (app.setPixelRatio) app.setPixelRatio(1);
     setIsLoading(false);
+  }, []);
+
+  // Intersection Observer to stop tracking and rendering when not visible
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+        // Pause/Play spline render loop
+        if (splineApp.current) {
+          if (entry.isIntersecting) {
+            splineApp.current.play();
+          } else {
+            splineApp.current.stop();
+          }
+        }
+      },
+      { threshold: 0.01 }
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
   }, []);
 
   // Global cursor tracking + watermark cleanup
   useEffect(() => {
-    if (isLoading || !containerRef.current) return;
+    if (isLoading || !containerRef.current || !isVisible) return;
 
     const container = containerRef.current;
 
@@ -47,7 +75,12 @@ export default function SplineScene({ scene, className = "" }: SplineSceneProps)
       canvas.addEventListener("mouseleave", blockLeaveEvents, true);
     }
 
+    let lastMove = 0;
     const forwardMouseMove = (e: MouseEvent) => {
+      const now = Date.now();
+      if (now - lastMove < 32) return; // ~30fps throttle for tracking
+      lastMove = now;
+
       const activeCanvas = findCanvas();
       if (!activeCanvas) return;
 
@@ -161,6 +194,7 @@ export default function SplineScene({ scene, className = "" }: SplineSceneProps)
     <div
       ref={containerRef}
       className={`spline-container ${className}`}
+      style={{ visibility: isVisible ? "visible" : "hidden" }}
     >
       {/* Sci-Fi loader */}
       {isLoading && (
